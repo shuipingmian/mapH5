@@ -8,10 +8,12 @@
         :show-dots="false"
         :initial-index="index"
         :options="slideOptions"
+        :direction="horizontal"
+        :allow-vertical="false"
         @scroll="onScroll"
         @change="onChange"
       >
-        <cube-slide-item v-for="(tab, index) in tabs" :key="index">
+        <cube-slide-item v-for="(tab,index) in tabs" :key="index">
           <component
             :is="tab.component"
             ref="component"
@@ -38,7 +40,7 @@
         class="border-bottom-1px"
       >
         <cube-tab v-for="item in tabs" :key="item.label" :label="item.label">
-          <i slot="icon" class="cubeic-home"></i>
+          <i slot="icon" :class="item.icon" style="font-size:16px"></i>
           <div>{{ item.label }}</div>
         </cube-tab>
       </cube-tab-bar>
@@ -127,6 +129,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "../../common/less/icon";
 .tab {
   height: 100%;
   .slide-wrapper {

@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div id="mapContainer"></div>
-    sadsasada
+
   </div>
 </template>
 
@@ -37,7 +37,6 @@ export default {
 
 <style scoped>
 .page {
-  background-color: red;
   width: 100%;
   height: 100%;
 }

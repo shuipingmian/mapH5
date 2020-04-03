@@ -20,7 +20,7 @@ export default {
         {
           label: "警情处置",
           component: policehandling,
-          icon: "cubeic-home",
+          icon: "icon-plicion",
           data: {
             seller: this.seller
           }
@@ -28,14 +28,14 @@ export default {
         {
           label: "基层基础",
           component: basicmatters,
-          icon: "cubeic-home",
+          icon: "icon-fibte",
           data: {
             seller: this.seller
           }
         },
         {
           label: "特勤保障",
-          icon: "cubeic-home",
+          icon: "icon-uniE900",
           component: policehandling,
           data: {
             seller: this.seller
@@ -43,7 +43,7 @@ export default {
         },
         {
           label: "突发上报",
-          icon: "cubeic-home",
+          icon: "icon-letfain",
           component: policehandling,
           data: {
             seller: this.seller
@@ -51,7 +51,7 @@ export default {
         },
         {
           label: "个人中心",
-          icon: "cubeic-home",
+          icon: "icon-peron",
           component: policehandling,
           data: {
             seller: this.seller
@@ -63,6 +63,7 @@ export default {
 };
 </script>
 <style lang="less">
+@import "./common/less/icon";
 html,body,#app,#nav{
   width:100%;
   height:100%;
