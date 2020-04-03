@@ -1,15 +1,15 @@
 <template>
   <div class="page">
     <div id="mapContainer"></div>
-    <actionSheet />
+    <List />
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import actionSheet from "@/components/actionSheet"
+import List from "@/components/list"
 export default {
   components: {
-    actionSheet
+    List
   },
   data() {
     return {
@@ -20,7 +20,6 @@ export default {
   },
   methods: {
     mapInit() {
-      const that = this
       const mapList = [{ position: [116.4, 40], title: "marker1", color: "red" }, { position: [116.5, 40], title: "marker2", color: "default" }, { position: [116.3, 39.9], title: "marker3", color: "default" }, { position: [116.45, 39.8], title: "marker4", color: "red" }]
       const map = new AMap.Map("mapContainer", {  // eslint-disable-line 
         resizeEnable: true,
@@ -41,7 +40,7 @@ export default {
           icon: icon
         });
         marker.on("click", function() {
-          that.$store.commit("showActive", d.title);
+
         })
       })
     }
