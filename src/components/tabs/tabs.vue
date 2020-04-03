@@ -1,37 +1,13 @@
 <template>
   <div class="tab">
     <div class="slide-wrapper">
-      <!-- <cube-slide
-        ref="slide"
-        :loop="false"
-        :auto-play="false"
-        :show-dots="false"
-        :initial-index="index"
-        :options="slideOptions"
-        :direction="horizontal"
-        :allow-vertical="false"
-        @scroll="onScroll"
-        @change="onChange"
-      >
-        <cube-slide-item v-for="(tab,index) in tabs" :key="index">
-          <component
-            :is="tab.component"
-            ref="component"
-            :data="tab.data"
-          ></component>
-        </cube-slide-item>
-      </cube-slide> -->
-      <router-view></router-view>
+      <transition name="slide-fade">
+
+        <router-view></router-view>
+
+      </transition>
     </div>
     <div class="tabslist">
-      <!-- <cube-tab-bar
-        v-model="selectedLabelDefault"
-        :data="tabs"
-        :use-transition="true"
-        :show-slider="true"
-        @click="setcliek(tabs)"
-      >
-      </cube-tab-bar> -->
       <cube-tab-bar
         ref="tabBar"
         v-model="selectedLabel"
@@ -86,7 +62,7 @@ export default {
     }
   },
   mounted() {
-    this.onChange(this.index);
+    // this.onChange(this.index);
   },
   methods: {
     routepush(routersrc) {
@@ -122,6 +98,22 @@ export default {
     height:100%;
     flex: 1;
     overflow: hidden;
+    // 路由动画效果
+.slide-fade{
+ position: absolute;left:0;right: 0;
+}
+.slide-fade-enter-active {
+ transition: all 0.6s ease;
+}
+.slide-fade-leave-active {
+ transition: all .1s cubic-bezier(2.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+{
+ left:0;right: 0;
+ transform: translateX(3px);
+ opacity: 0;
+}
   }
   .tabslist {
     z-index: 100000;
