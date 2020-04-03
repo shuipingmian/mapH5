@@ -1,7 +1,7 @@
 <template>
   <div class="tab">
     <div class="slide-wrapper">
-      <cube-slide
+      <!-- <cube-slide
         ref="slide"
         :loop="false"
         :auto-play="false"
@@ -20,7 +20,8 @@
             :data="tab.data"
           ></component>
         </cube-slide-item>
-      </cube-slide>
+      </cube-slide> -->
+      <router-view></router-view>
     </div>
     <div class="tabslist">
       <!-- <cube-tab-bar
@@ -34,14 +35,13 @@
       <cube-tab-bar
         ref="tabBar"
         v-model="selectedLabel"
-        :use-transition="false"
+        :use-transition="true"
         :show-slider="true"
         :data="tabs"
-        class="border-bottom-1px"
       >
         <cube-tab v-for="item in tabs" :key="item.label" :label="item.label">
-          <i slot="icon" :class="item.icon" style="font-size:16px"></i>
-          <div>{{ item.label }}</div>
+          <i slot="icon" :class="item.icon" @click="routepush(item.path)"></i>
+          <div class="font-tab" @click="routepush(item.path)">{{ item.label }}</div>
         </cube-tab>
       </cube-tab-bar>
     </div>
@@ -65,25 +65,6 @@ export default {
   },
   data() {
     return {
-      selectedLabelDefault: "警情处置",
-      tab: [
-        {
-          label: "Home",
-          icon: "cubeic-home"
-        },
-        {
-          label: "Like",
-          icon: "cubeic-like"
-        },
-        {
-          label: "Vip",
-          icon: "cubeic-vip"
-        },
-        {
-          label: "Me",
-          icon: "cubeic-person"
-        }
-      ],
       index: this.initialIndex,
       slideOptions: {
         listenScroll: true,
@@ -108,6 +89,9 @@ export default {
     this.onChange(this.index);
   },
   methods: {
+    routepush(routersrc) {
+      this.$router.replace(routersrc)
+    },
     setcliek(opa) {
       console.log(opa);
     },
@@ -131,6 +115,7 @@ export default {
 <style lang="less" scoped>
 @import "../../common/less/icon";
 .tab {
+  overflow: hidden;
   height: 100%;
   .slide-wrapper {
     width: 100%;
@@ -142,10 +127,13 @@ export default {
     z-index: 100000;
     background-color: #ffffff;
     width: 100%;
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 0px;
     left: 0;
     font-size: 12px;
+    .font-tab{
+      font-size: 10px;
+    }
     .cube-tab {
       padding: 10px;
     }

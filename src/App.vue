@@ -20,6 +20,7 @@ export default {
         {
           label: "警情处置",
           component: policehandling,
+          path: "/policehandling",
           icon: "icon-plicion",
           data: {
             seller: this.seller
@@ -27,6 +28,7 @@ export default {
         },
         {
           label: "基层基础",
+          path: "/basicmatters",
           component: basicmatters,
           icon: "icon-fibte",
           data: {
@@ -36,6 +38,7 @@ export default {
         {
           label: "特勤保障",
           icon: "icon-uniE900",
+          path: "/specialcase",
           component: policehandling,
           data: {
             seller: this.seller
@@ -44,6 +47,7 @@ export default {
         {
           label: "突发上报",
           icon: "icon-letfain",
+          path: "/suddenAccident",
           component: policehandling,
           data: {
             seller: this.seller
@@ -52,6 +56,7 @@ export default {
         {
           label: "个人中心",
           icon: "icon-peron",
+          path: "/personalaffairs",
           component: policehandling,
           data: {
             seller: this.seller
