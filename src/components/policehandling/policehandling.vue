@@ -52,7 +52,6 @@ export default {
 
 <style scoped>
 .page {
-  background-color: red;
   width: 100%;
   height: 100%;
 }
