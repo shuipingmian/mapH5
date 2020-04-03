@@ -131,6 +131,7 @@ export default {
   height: 100%;
   .slide-wrapper {
     width: 100%;
+    height:100%;
     flex: 1;
     overflow: hidden;
   }
