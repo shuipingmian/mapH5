@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "dependencies": {
+  "dependencies":  {
     "amfe-flexible": "^2.2.1",
     "core-js": "^3.6.4",
     "cube-ui": "~1.12.15",
