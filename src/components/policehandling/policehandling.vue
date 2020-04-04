@@ -11,21 +11,21 @@ export default {
   components: {
     actionSheet
   },
-  data() {
+  data () {
     return {
     }
   },
-  mounted() {
+  mounted () {
     this.mapInit();
   },
   methods: {
-    mapInit() {
+    mapInit () {
       const that = this
       const mapList = [{ position: [116.4, 40], title: "marker1", color: "red" }, { position: [116.5, 40], title: "marker2", color: "default" }, { position: [116.3, 39.9], title: "marker3", color: "default" }, { position: [116.45, 39.8], title: "marker4", color: "red" }]
       const map = new AMap.Map("mapContainer", {  // eslint-disable-line 
         resizeEnable: true,
-        zoom: 11, // 级别
-        center: [116.397428, 39.90923]// 中心点坐标
+        zoom: 11, // 级别120.174054,30.259348
+        center: [120.1740, 30.2593]// 中心点坐标
       });
       map.clearMap();
       mapList.forEach((d) => {
@@ -40,7 +40,7 @@ export default {
           map: map,
           icon: icon
         });
-        marker.on("click", function() {
+        marker.on("click", function () {
           that.$store.commit("showActive", d.title);
         })
       })
