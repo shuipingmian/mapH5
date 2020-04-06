@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div id="mapContainer"></div>
-    <List />
+    <List ref="showList" />
   </div>
 </template>
 
@@ -11,20 +11,21 @@ export default {
   components: {
     List
   },
-  data() {
+  data () {
     return {
     }
   },
-  mounted() {
+  mounted () {
     this.mapInit();
   },
   methods: {
-    mapInit() {
-      const mapList = [{ position: [116.4, 40], title: "marker1", color: "red" }, { position: [116.5, 40], title: "marker2", color: "default" }, { position: [116.3, 39.9], title: "marker3", color: "default" }, { position: [116.45, 39.8], title: "marker4", color: "red" }]
+    mapInit () {
+      const that = this;
+      const mapList = [{ position: [120, 30.1], title: "marker1", color: "red" }, { position: [120.3, 30.2], title: "marker2", color: "default" }, { position: [120.3, 29.9], title: "marker3", color: "default" }, { position: [120.45, 30], title: "marker4", color: "red" }]
       const map = new AMap.Map("mapContainer", {  // eslint-disable-line 
         resizeEnable: true,
-        zoom: 11, // 级别
-        center: [116.397428, 39.90923]// 中心点坐标
+        zoom: 11, // 级别120.174054,30.259348
+        center: [120.1740, 30.2593]// 中心点坐标
       });
       map.clearMap();
       mapList.forEach((d) => {
@@ -39,17 +40,19 @@ export default {
           map: map,
           icon: icon
         });
-        marker.on("click", function() {
-
+        marker.on("click", function(data) {
+          const component = that.$refs.showList.$children[0];
+          component.show();
         })
       })
     }
+
   }
 
 }
 </script>
 
-<style scoped>
+<style>
 .page {
   width: 100%;
   height: 100%;
@@ -57,10 +60,8 @@ export default {
 #mapContainer {
   height: 94%;
 }
-.amap-logo {
-  display: none !important;
-}
+.amap-logo,
 .amap-copyright {
-  opacity: 0 !important;
+  display: none !important;
 }
 </style>

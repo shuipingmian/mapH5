@@ -6,13 +6,13 @@
 
 <script type="text/ecmascript-6">
 export default {
-  data() {
+  components: {
+
+  },
+  data () {
     return {
 
     }
-  },
-  components: {
-
   }
 }
 </script>
