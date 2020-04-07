@@ -76,7 +76,6 @@ export default {
       const sceneId = this.$store.state.sceneId
       if (sceneId) params.scene_id = sceneId
       getItemList(params).then(res => {
-        console.log(res)
       })
     }
   }

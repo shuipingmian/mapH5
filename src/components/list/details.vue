@@ -30,7 +30,9 @@
         <div class="vehicleInfo">
           <ul>
             <li>
-              <div class="LicensePlate"></div>
+              <div class="LicensePlate">
+                <p>浙A88888</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -144,7 +146,11 @@ export default {
     }
   }
   .details{
-
+    width:100%;
+    .title{
+      font-size:13.33px;
+      color:;
+    }
   }
 }
 </style>

@@ -13,20 +13,20 @@
         </div>
       </div>
       <ul class="gongdanList">
-        <li v-for="item in virtualData" :key="item.id">
+        <li v-for="item in virtualData" :key="item.id" @click="findMarker(item.place)">
           <div class="information">
             <div class="title">
               <div :class="item.color"></div>
-              <p>{{ item.title }}</p>
+              <p>{{ item.type }}</p>
             </div>
             <div class="content">
-              <p>{{ item.content }}</p>
+              <p>{{ item.describe }}</p>
             </div>
             <div class="timing">
-              <p>{{ item.timing }}</p>
+              <p>{{ item.time }}</p>
             </div>
             <div class="source">
-              <p>{{ item.source }}</p>
+              <p>{{ item.from }}</p>
             </div>
           </div>
           <div class="btn">
@@ -41,24 +41,46 @@
   </cube-popup>
 </template>
 <script>
+import { getItemList } from "@/apis/item"
 export default {
   name: "List",
   data() {
     return {
-      virtualData: [
-        { id: 1, title: "交通执法", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-red ball" },
-        { id: 2, title: "指挥调度", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-yellow ball" },
-        { id: 3, title: "专项整治", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-orange ball" }
-      ]
+      virtualData: []
     }
   },
   mounted() {
     this.showList();
+    this.listInit();
   },
   methods: {
     showList() {
       const component = this.$refs.showList;
       component.show();
+    },
+    listInit() {
+      const params = {
+        page: 1 || 0
+      }
+      const sceneId = this.$store.state.sceneId
+      if (sceneId) params.scene_id = sceneId
+      getItemList(params).then(res => {
+        this.virtualData = res.data.list;
+        this.virtualData.forEach((d) => {
+          if (d.type === "指挥调度") {
+            d.color = "ball-yellow ball"
+          }
+          if (d.type === "专项整治") {
+            d.color = "ball-orange ball"
+          }
+          if (d.type === "交通执法") {
+            d.color = "ball-red ball"
+          }
+        })
+      })
+    },
+    findMarker(lnglat) {
+      this.$emit("fun", lnglat)
     }
 
   }
