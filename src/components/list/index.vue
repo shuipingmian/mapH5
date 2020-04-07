@@ -12,31 +12,39 @@
           <p>未完成</p>
         </div>
       </div>
+
       <ul class="gongdanList">
-        <li v-for="item in virtualData" :key="item.id">
-          <div class="information">
-            <div class="title">
-              <div :class="item.color"></div>
-              <p>{{ item.title }}</p>
+        <cube-scroll
+          ref="scroll"
+          :data="virtualData"
+          class="horizontal-scroll-list-wrap"
+        >
+          <li v-for="item in virtualData" :key="item.id">
+            <div class="information">
+              <div class="title">
+                <div :class="item.color"></div>
+                <p>{{ item.title }}</p>
+              </div>
+              <div class="content">
+                <p>{{ item.content }}</p>
+              </div>
+              <div class="timing">
+                <p>{{ item.timing }}</p>
+              </div>
+              <div class="source">
+                <p>{{ item.source }}</p>
+              </div>
             </div>
-            <div class="content">
-              <p>{{ item.content }}</p>
+            <div class="btn">
+              <p class="result">未处理</p>
+              <div class="management">
+                去处置
+              </div>
             </div>
-            <div class="timing">
-              <p>{{ item.timing }}</p>
-            </div>
-            <div class="source">
-              <p>{{ item.source }}</p>
-            </div>
-          </div>
-          <div class="btn">
-            <p class="result">未处理</p>
-            <div class="management">
-              去处置
-            </div>
-          </div>
-        </li>
+          </li>
+        </cube-scroll>
       </ul>
+
     </div>
   </cube-popup>
 </template>
@@ -97,7 +105,7 @@ export default {
   }
   .gongdanList {
     overflow-y: auto;
-    max-height:220px;
+    height:220px;
     li{
       display: flex;
       justify-content: space-between;

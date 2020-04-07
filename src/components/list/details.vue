@@ -1,28 +1,34 @@
 <template>
+
   <cube-popup id="list" class="popup" position="bottom" :mask="false">
     <div class="gongdan">
       <ul class="gongdanList">
-        <li v-for="item in virtualData" :key="item.id">
-          <div class="information">
-            <div class="title">
-              <div :class="item.color"></div>
-              <p>{{ item.title }}</p>
+        <cube-scroll
+          ref="scroll"
+          :data="virtualData"
+          class="horizontal-scroll-list-wrap"
+        >
+          <li v-for="item in virtualData" :key="item.id" style=" display: inline-block">
+            <div class="information">
+              <div class="title">
+                <div :class="item.color"></div>
+                <p>{{ item.title }}</p>
+              </div>
+              <div class="content">
+                <p>{{ item.content }}</p>
+              </div>
+              <div class="timing">
+                <p>{{ item.timing }}</p>
+              </div>
+              <div class="source">
+                <p>{{ item.source }}</p>
+              </div>
             </div>
-            <div class="content">
-              <p>{{ item.content }}</p>
+            <div class="btn">
+              <p class="result">未处理</p>
             </div>
-            <div class="timing">
-              <p>{{ item.timing }}</p>
-            </div>
-            <div class="source">
-              <p>{{ item.source }}</p>
-            </div>
-          </div>
-          <div class="btn">
-            <p class="result">未处理</p>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </cube-scroll></ul>
       <!-- <div class="details">
         <div class="title">
           <p>事故车辆信息</p>
@@ -38,7 +44,9 @@
       <div class="videoList">
 
       </div> -->
+
     </div>
+
   </cube-popup>
 </template>
 <script>
@@ -47,6 +55,10 @@ export default {
   props: ["detailData"],
   data() {
     return {
+      scrollOptions: {
+        click: false,
+        directionLockThreshold: 0
+      },
       virtualData: [
         { id: 1, title: "交通执法", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-red ball" }
       ]
@@ -73,15 +85,28 @@ export default {
   position: absolute;
   overflow: hidden;
   width: 100%;
+
 }
+
 .gongdan{
   padding-bottom:60px;
   background-color: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  #ratings{
+    position: relative;
+    text-align: left;
+    white-space: normal;
+    height: 100%
+}
+ .horizontal-scroll-list-wrap{
+     .cube-scroll-content{
+         display: inline-block
+         }
   .gongdanList {
-    overflow-y: auto;
-    max-height:220px;
+    // overflow-y: auto;
+     white-space: nowrap;
+     height:220px;
     li{
       display: flex;
       justify-content: space-between;
@@ -142,9 +167,11 @@ export default {
         }
       }
     }
+    }
   }
   .details{
 
   }
+
 }
 </style>
