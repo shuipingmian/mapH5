@@ -149,7 +149,6 @@ export default {
     width:100%;
     .title{
       font-size:13.33px;
-      color:;
     }
   }
 }
