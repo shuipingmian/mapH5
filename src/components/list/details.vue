@@ -23,7 +23,7 @@
           </div>
         </li>
       </ul>
-      <div class="details">
+      <!-- <div class="details">
         <div class="title">
           <p>事故车辆信息</p>
         </div>
@@ -37,7 +37,7 @@
       </div>
       <div class="videoList">
 
-      </div>
+      </div> -->
     </div>
   </cube-popup>
 </template>
