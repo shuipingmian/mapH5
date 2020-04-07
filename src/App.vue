@@ -6,6 +6,7 @@
   </div>
 </template>
 <script>
+import { getItemList } from "@/apis/item"
 import tabs from "@/components/tabs/tabs";
 import basicmatters from "@/components/basicmatters/basicmatters";
 import policehandling from "@/components/policehandling/policehandling";
@@ -62,6 +63,21 @@ export default {
           }
         }
       ];
+    }
+  },
+  created() {
+    this._test()
+  },
+  methods: {
+    _test() {
+      const params = {
+        page: 1 || 0
+      }
+      const sceneId = this.$store.state.sceneId
+      if (sceneId) params.scene_id = sceneId
+      getItemList(params).then(res => {
+        console.log(res)
+      })
     }
   }
 };
