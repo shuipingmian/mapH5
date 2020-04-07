@@ -1,17 +1,6 @@
 <template>
-  <cube-popup id="list" ref="showList" class="popup" position="bottom" :mask="false">
+  <cube-popup id="list" class="popup" position="bottom" :mask="false">
     <div class="gongdan">
-      <div class="titleBar">
-        <div class="today">
-          <p>今日工单</p>
-        </div>
-        <div class="finish">
-          <p>已完成</p>
-        </div>
-        <div class="noFinish">
-          <p>未完成</p>
-        </div>
-      </div>
       <ul class="gongdanList">
         <li v-for="item in virtualData" :key="item.id">
           <div class="information">
@@ -31,40 +20,55 @@
           </div>
           <div class="btn">
             <p class="result">未处理</p>
-            <div class="management">
-              去处置
-            </div>
           </div>
         </li>
       </ul>
+      <div class="details">
+        <div class="title">
+          <p>事故车辆信息</p>
+        </div>
+        <div class="vehicleInfo">
+          <ul>
+            <li>
+              <div class="LicensePlate"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="videoList">
+
+      </div>
     </div>
   </cube-popup>
 </template>
 <script>
 export default {
-  name: "List",
+  name: "Details",
+  props: ["detailData"],
   data() {
     return {
       virtualData: [
-        { id: 1, title: "交通执法", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-red ball" },
-        { id: 2, title: "指挥调度", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-yellow ball" },
-        { id: 3, title: "专项整治", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-orange ball" }
+        { id: 1, title: "交通执法", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-red ball" }
       ]
     }
   },
-  mounted() {
-    this.showList();
+  watch: {
+    detailData(newData, oldData) {
+      const type = newData.target.De.title
+      this.virtualData[0].title = type;
+      if (type === "指挥调度") {
+        this.virtualData[0].color = "ball-yellow ball"
+      }
+      if (type === "专项整治") {
+        this.virtualData[0].color = "ball-orange ball"
+      }
+    }
   },
   methods: {
-    showList() {
-      const component = this.$refs.showList;
-      component.show();
-    }
-
   }
 }
 </script>
-<style scoped lang='less'>
+<style lang="less" scoped>
 #list{
   position: absolute;
   overflow: hidden;
@@ -75,26 +79,6 @@ export default {
   background-color: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  .titleBar{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    line-height: 26.66px;
-    font-size:13.33px;
-    padding-top:15px;
-    div{
-      width:95.33px;
-      height:100%;
-      color:#999;
-      border:1px solid #999;
-      border-radius: 13.33px;
-    }
-    .today{
-      color:#fff;
-      background-color: #008EFF;
-      border-color:#008EFF;
-    }
-  }
   .gongdanList {
     overflow-y: auto;
     max-height:220px;
@@ -158,6 +142,9 @@ export default {
         }
       }
     }
+  }
+  .details{
+
   }
 }
 </style>

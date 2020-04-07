@@ -2,17 +2,22 @@
   <div class="page">
     <div id="mapContainer"></div>
     <List ref="showList" />
+    <detailList ref="showDetails" :detail-data="detailData" />
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import List from "@/components/list"
+import detailList from "@/components/list/details"
 export default {
   components: {
-    List
+    List,
+    detailList
   },
   data () {
     return {
+      listData: [],
+      detailData: []
     }
   },
   mounted () {
@@ -21,7 +26,9 @@ export default {
   methods: {
     mapInit () {
       const that = this;
-      const mapList = [{ position: [120, 30.1], title: "marker1", color: "red" }, { position: [120.3, 30.2], title: "marker2", color: "default" }, { position: [120.3, 29.9], title: "marker3", color: "default" }, { position: [120.45, 30], title: "marker4", color: "red" }]
+      const details = this.$refs.showDetails.$children[0]
+      const list = this.$refs.showList.$children[0]
+      const mapList = [{ position: [120, 30.1], title: "交通执法", color: "red" }, { position: [120.3, 30.2], title: "指挥调度", color: "default" }, { position: [120.3, 29.9], title: "专项整治", color: "default" }, { position: [120.45, 30], title: "交通执法", color: "red" }]
       const map = new AMap.Map("mapContainer", {  // eslint-disable-line 
         resizeEnable: true,
         zoom: 11, // 级别120.174054,30.259348
@@ -41,8 +48,10 @@ export default {
           icon: icon
         });
         marker.on("click", function(data) {
-          const component = that.$refs.showList.$children[0];
-          component.show();
+          map.setZoomAndCenter(14, [data.lnglat.lng, data.lnglat.lat]);
+          details.show();
+          list.hide();
+          that.detailData = data
         })
       })
     }
