@@ -13,29 +13,35 @@
         </div>
       </div>
       <ul class="gongdanList">
-        <li v-for="item in virtualData" :key="item.id" @click="findMarker(item.place)">
-          <div class="information">
-            <div class="title">
-              <div :class="item.color"></div>
-              <p>{{ item.type }}</p>
+        <cube-scroll
+          ref="scroll"
+          :data="virtualData"
+          class="horizontal-scroll-list-wrap"
+        >
+          <li v-for="item in virtualData" :key="item.id" @click="findMarker(item.place)">
+            <div class="information">
+              <div class="title">
+                <div :class="item.color"></div>
+                <p>{{ item.type }}</p>
+              </div>
+              <div class="content">
+                <p>{{ item.describe }}</p>
+              </div>
+              <div class="timing">
+                <p>{{ item.time }}</p>
+              </div>
+              <div class="source">
+                <p>{{ item.from }}</p>
+              </div>
             </div>
-            <div class="content">
-              <p>{{ item.describe }}</p>
+            <div class="btn">
+              <p class="result">未处理</p>
+              <div class="management" @click="toManagement">
+                去处置
+              </div>
             </div>
-            <div class="timing">
-              <p>{{ item.time }}</p>
-            </div>
-            <div class="source">
-              <p>{{ item.from }}</p>
-            </div>
-          </div>
-          <div class="btn">
-            <p class="result">未处理</p>
-            <div class="management" @click="toManagement">
-              去处置
-            </div>
-          </div>
-        </li>
+          </li>
+        </cube-scroll>
       </ul>
     </div>
   </cube-popup>
@@ -125,7 +131,8 @@ export default {
   }
   .gongdanList {
     overflow-y: auto;
-    max-height:220px;
+    // max-height:220px;
+    height: 220px;
     li{
       display: flex;
       justify-content: space-between;
