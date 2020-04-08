@@ -1,6 +1,10 @@
 <template>
   <cube-popup id="list" class="popup" position="bottom" :mask="false">
-    <div class="gongdan">
+    <div ref="comheight" class="gongdan">
+      <div @click="checkheight()">
+        <i v-if="false" class="icon-down"></i>
+        <i :class="[iconcheck ? 'icon-down' : 'icon-top']"></i>
+      </div>
       <ul class="gongdanList">
         <li v-for="item in virtualData" :key="item.id">
           <div class="information">
@@ -52,6 +56,7 @@ export default {
   props: ["detailData"],
   data() {
     return {
+      iconcheck: false,
       virtualData: [
         { id: 1, title: "交通执法", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-red ball" }
       ]
@@ -69,7 +74,20 @@ export default {
       }
     }
   },
+  mounted() {
+
+  },
   methods: {
+    checkheight() {
+      console.log(this.$refs.comheight.offsetHeight)
+      if (this.$refs.comheight.offsetHeight >= 300) {
+        this.iconcheck = false
+        this.$refs.comheight.style.height = "260px";
+      } else {
+        this.$refs.comheight.style.height = "640px";
+        this.iconcheck = true
+      }
+    }
   }
 }
 </script>
@@ -81,8 +99,9 @@ export default {
 }
 .gongdan{
   // padding-bottom:60px;
-  z-index: 1000;
-  height: 640px;
+  z-index: 120;
+  margin-bottom: -2px;
+  height: 260px;
   background-color: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -141,6 +160,8 @@ export default {
     }
   }
   .management{
+    position: absolute;
+    bottom: 20px;
     width:341.66px;
     height:46px;
     line-height: 46px;
