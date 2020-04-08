@@ -23,6 +23,9 @@
           </div>
         </li>
       </ul>
+      <div class="management">
+        去处置
+      </div>
       <!-- <div class="details">
         <div class="title">
           <p>事故车辆信息</p>
@@ -90,7 +93,6 @@ export default {
       padding:0px 20px 20px 20px;
       font-size: 10.66px;
       color:#666;
-      border-bottom:1px solid #DDDDDD;
       .information{
         text-align: left;
       }
@@ -133,17 +135,18 @@ export default {
           margin-top:10px;
           padding-right:5px;
         }
-        .management{
-          width:85px;
-          height:26.66px;
-          line-height: 26.66px;
-          border-radius: 13.33px;
-          color:#fff;
-          background-color: #532BFF;
-          margin-top:16px;
-        }
       }
     }
+  }
+  .management{
+    width:341.66px;
+    height:46px;
+    line-height: 46px;
+    font-size: 16.66px;
+    margin:0 20px;
+    border-radius: 23.33px;
+    color:#fff;
+    background:linear-gradient(to left,#004EFF,#34AEFB);
   }
   .details{
     width:100%;
