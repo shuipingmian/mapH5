@@ -1,5 +1,0 @@
-   <cube-scroll
-          ref="scroll"
-          :data="virtualData"
-          class="horizontal-scroll-list-wrap"
-        >
