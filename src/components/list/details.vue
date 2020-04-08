@@ -80,7 +80,9 @@ export default {
   width: 100%;
 }
 .gongdan{
-  padding-bottom:60px;
+  // padding-bottom:60px;
+  z-index: 1000;
+  height: 640px;
   background-color: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;

@@ -117,7 +117,7 @@ export default {
 }
   }
   .tabslist {
-    z-index: 101;
+    z-index: 98;
     background-color: #ffffff;
     width: 100%;
     position: fixed;

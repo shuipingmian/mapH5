@@ -100,6 +100,7 @@ export default {
 </script>
 <style scoped lang='less'>
 #list{
+  z-index: 93 !important;
   position: absolute;
   overflow: hidden;
   width: 100%;
