@@ -99,6 +99,7 @@ export default {
   width: 100%;
 }
 .gongdan{
+  z-index: 101;
   padding-bottom:60px;
   background-color: #fff;
   border-top-left-radius: 12px;

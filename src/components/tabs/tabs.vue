@@ -93,6 +93,7 @@ export default {
 .tab {
   overflow: hidden;
   height: 100%;
+  z-index: 50;
   .slide-wrapper {
     width: 100%;
     height:100%;
@@ -116,7 +117,7 @@ export default {
 }
   }
   .tabslist {
-    z-index: 100;
+    z-index: 101;
     background-color: #ffffff;
     width: 100%;
     position: fixed;
