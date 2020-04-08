@@ -79,7 +79,6 @@ export default {
   },
   methods: {
     checkheight() {
-      console.log(this.$refs.comheight.offsetHeight)
       if (this.$refs.comheight.offsetHeight >= 300) {
         this.iconcheck = false
         this.$refs.comheight.style.height = "260px";
