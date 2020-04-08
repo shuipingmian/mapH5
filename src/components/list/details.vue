@@ -79,7 +79,6 @@ export default {
   },
   methods: {
     checkheight() {
-      console.log(this.$refs.comheight.offsetHeight)
       if (this.$refs.comheight.offsetHeight >= 300) {
         this.iconcheck = false
         this.$refs.comheight.style.height = "260px";
@@ -105,6 +104,7 @@ export default {
   background-color: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  transition: .8s;
   .gongdanList {
     overflow-y: auto;
     max-height:220px;
