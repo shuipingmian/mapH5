@@ -104,6 +104,7 @@ export default {
   background-color: #fff;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  transition: .8s;
   .gongdanList {
     overflow-y: auto;
     max-height:220px;
