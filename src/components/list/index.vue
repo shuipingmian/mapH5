@@ -36,7 +36,7 @@
             </div>
             <div class="btn">
               <p class="result">未处理</p>
-              <div class="management" @click="toManagement">
+              <div class="management" @click="toManagement(item)">
                 去处置
               </div>
             </div>
@@ -88,11 +88,13 @@ export default {
     findMarker(lnglat) {
       this.$emit("fun", lnglat)
     },
-    toManagement() {
+    toManagement(item) {
       const list = this.$refs.showList;
       const details = this.$parent.$children[1].$children[0]
       list.hide();
       details.show();
+      this.$parent.$children[1].deetdata.push(item)
+      console.log(item, details, this.$parent.$children[1])
     }
 
   }

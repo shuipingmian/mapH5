@@ -1,29 +1,32 @@
 <template>
-  <cube-popup id="list" class="popup" position="bottom" :mask="false">
+  <cube-popup id="list" ref="detailList" class="popup" position="bottom" :mask="false">
     <div ref="comheight" class="gongdan">
       <div @click="checkheight()">
         <i v-if="false" class="icon-down"></i>
         <i :class="[iconcheck ? 'icon-down' : 'icon-top']"></i>
       </div>
       <ul class="gongdanList">
-        <li v-for="item in virtualData" :key="item.id">
+        <li v-for="item in deetdata" :key="item.id">
           <div class="information">
             <div class="title">
               <div :class="item.color"></div>
-              <p>{{ item.title }}</p>
+              <p>{{ item.type }}</p>
             </div>
             <div class="content">
-              <p>{{ item.content }}</p>
+              <p>{{ item.describe }}</p>
             </div>
             <div class="timing">
-              <p>{{ item.timing }}</p>
+              <p>{{ item.time }}</p>
             </div>
             <div class="source">
-              <p>{{ item.source }}</p>
+              <p>{{ item.from }}</p>
             </div>
           </div>
           <div class="btn">
             <p class="result">未处理</p>
+            <div class="goback" @click="goback">
+              返回工单列表
+            </div>
           </div>
         </li>
       </ul>
@@ -56,6 +59,7 @@ export default {
   props: ["detailData"],
   data() {
     return {
+      deetdata: [],
       iconcheck: false,
       virtualData: [
         { id: 1, title: "交通执法", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-red ball" }
@@ -86,6 +90,13 @@ export default {
         this.$refs.comheight.style.height = "640px";
         this.iconcheck = true
       }
+    },
+    goback() {
+      const details = this.$parent.$children[1].$children[0];
+      const list = this.$parent.$children[0].$children[0];
+      details.hide();
+      list.show();
+      this.deetdata = []
     }
   }
 }
@@ -158,6 +169,15 @@ export default {
         }
       }
     }
+  }
+  .goback{
+          width:100px;
+          height:35.66px;
+          line-height: 35.66px;
+          margin-top: 1230px;
+          border-radius: 13.33px;
+          // color:#fff;
+          // background-color: #532BFF;
   }
   .management{
     position: absolute;

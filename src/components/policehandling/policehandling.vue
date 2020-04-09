@@ -56,6 +56,8 @@ export default {
           details.show();
           list.hide();
           that.detailData = data
+          that.$children[1].deetdata
+          console.log(that, data, that.$children[1].deetdata)
         })
       })
     },
