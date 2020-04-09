@@ -8,7 +8,7 @@ var data1 = Mock.mock({
   }]
 })
 Mock.mock("http://r740.youlishu.com:8888/api/item/list", {
-  "list|1-10": [{
+  "list|2-10": [{
   // 属性 id 是一个自增数，起始值为 1，每次增 1
     "id|+2": 10111,
     "type|1": ["交通执法", "指挥调度", "专项整治"],

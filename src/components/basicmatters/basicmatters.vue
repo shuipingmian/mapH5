@@ -1,13 +1,12 @@
 <template>
-  <div class="page">
-    basicmastters
-  </div>
+  <mapInit />
 </template>
 
 <script type="text/ecmascript-6">
+import mapInit from "../map"
 export default {
   components: {
-
+    mapInit
   },
   data () {
     return {

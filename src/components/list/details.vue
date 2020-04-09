@@ -165,19 +165,19 @@ export default {
           font-size:13.33px;
           text-align: right;
           margin-top:10px;
-          padding-right:5px;
         }
       }
     }
   }
   .goback{
-          width:100px;
-          height:35.66px;
-          line-height: 35.66px;
-          margin-top: 1230px;
-          border-radius: 13.33px;
-          // color:#fff;
-          // background-color: #532BFF;
+    width:100px;
+    height:35.66px;
+    line-height: 35.66px;
+    padding-top:18px;
+    border-radius: 13.33px;
+    text-align: right;
+    // color:#fff;
+    // background-color: #532BFF;
   }
   .management{
     position: absolute;
