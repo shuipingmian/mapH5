@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <headtitle :router-from="routerFrom" :title="fields[fields.length-1].headtitlename" @back="backtabshow()" />
+    <headtitle :router-from="routerFrom" :title="fields[fields.length-1].headtitlename" />
     <div class="padding-left">
       <cube-scroll
         ref="scroll"
@@ -14,17 +14,14 @@
 </template>
 
 <script type="text/ecmascript-6">
-
-import PublicProcessing from "@/components/PublicProcessing/PublicProcessing";
+// import mapInit from "../map"
+import PublicProcessing from "@/components/PublicProcessing/PublicProcessing"
 import Progress from "../progress" ;
 import headtitle from "../headTitle/headTitle";
-import Location from "../location"
 export default {
   components: {
-    // Location,
     PublicProcessing,
-    headtitle,
-    Progress,   // eslint-disable-line 
+    headtitle
     // mapInit
   },
   data () {
@@ -32,16 +29,16 @@ export default {
       routerFrom: "",
       model: {
         disposaltime: "",
-        disposalobeject: "2017",
-        describe: "3",
+        disposalobeject: "",
+        describe: "",
         uploadValue: [],
-        textareaValue: "3",
-        note: "3",
-        test: "3"
+        textareaValue: "",
+        note: "",
+        test: ""
       },
       fields: [
         {
-          component: Location,
+          component: Progress,
           modelKey: "test",
           rules: {
             required: true
@@ -53,7 +50,7 @@ export default {
         {
           type: "input",
           modelKey: "disposaltime",
-          label: "上报时间",
+          label: "处置时间",
           props: {
             placeholder: "请输入"
           },
@@ -63,11 +60,22 @@ export default {
           }
         },
         {
-          type: "select",
+          type: "input",
           modelKey: "disposalobeject",
-          label: "事件类型",
+          label: "处置对象",
           props: {
-            options: ["交通事故", "特勤保障", "信息采集", "特殊情况", "特勤保障", "特勤保障"]
+            placeholder: "请输入"
+          },
+          rules: {
+            required: true
+          }
+        },
+        {
+          type: "input",
+          modelKey: "describe",
+          label: "事件描述",
+          props: {
+            placeholder: "请输入"
           },
           rules: {
             required: true
@@ -75,10 +83,9 @@ export default {
         },
         {
           type: "textarea",
-          modelKey: "describe",
-          label: "事件描述",
+          modelKey: "textareaValue",
+          label: "处置认定",
           props: {
-            maxlength: 160,
             placeholder: "请输入"
           },
           rules: {
@@ -88,7 +95,7 @@ export default {
         {
           type: "upload",
           modelKey: "uploadValue",
-          label: "现场照片",
+          label: "拍照取证",
           props: {
             placeholder: "请输入"
           },
@@ -110,8 +117,8 @@ export default {
         },
         {
           type: "input",
-          headtitlename: "突发上报",
-          buttonname: "立即上报"
+          headtitlename: "交通执法",
+          buttonname: "处置完成"
         }
       ]
     }
@@ -120,7 +127,7 @@ export default {
 
   },
   mounted () {
-    this.test()
+    console.log(this.routerFrom)
   },
   beforeRouteEnter(to, from, next) {
     next(vm => { //  这里的vm指的就是vue实例，可以用来当做this使用
@@ -128,17 +135,7 @@ export default {
     })
   },
   methods: {
-    // 显示tablist
-    backtabshow() {
-      this.$parent.show()
-    },
-    // 隐藏tablist
-    test() {
-      this.$parent.hide()
-    },
     submitS(data) {
-      this.$parent.show();
-      // 后期在这里向服务器发送数据
       console.log(data)
     }
   }
@@ -153,10 +150,9 @@ export default {
   min-height: 100%;
   position: relative;
   background: #fff;
-  z-index: 10 !important;
+  z-index: 120 !important;
   .padding-left{
     height: 90%;
-    padding: 1px 10px;
   }
 }
 </style>

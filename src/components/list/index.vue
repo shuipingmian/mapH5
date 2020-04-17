@@ -93,8 +93,8 @@ export default {
       const details = this.$parent.$children[1].$children[0]
       list.hide();
       details.show();
+      console.log(this.$parent)
       this.$parent.$children[1].deetdata.push(item)
-      console.log(item, details, this.$parent.$children[1])
     }
 
   }

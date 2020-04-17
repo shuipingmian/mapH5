@@ -19,5 +19,7 @@ module.exports = {
       postCompile: true,
       theme: true
     }
-  }
+  },
+  // 输出文件名称
+  outputDir: "mapH5"
 };

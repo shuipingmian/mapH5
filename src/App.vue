@@ -14,9 +14,9 @@ export default {
   components: {
     tabs
   },
-  computed: {
-    tabs() {
-      return [
+  data() {
+    return {
+      tabs: [
         {
           label: "警情处置",
           component: policehandling,
@@ -62,10 +62,41 @@ export default {
             seller: this.seller
           }
         }
-      ];
+      ],
+      tabs1: [
+        {
+          label: "基层基础",
+          path: "/basicmatters",
+          component: basicmatters,
+          icon: "icon-fibte",
+          data: {
+            seller: this.seller
+          }
+        },
+        {
+          label: "突发上报",
+          icon: "icon-letfain",
+          path: "/suddenAccident",
+          component: policehandling,
+          data: {
+            seller: this.seller
+          }
+        },
+        {
+          label: "个人中心",
+          icon: "icon-peron",
+          path: "/personalaffairs",
+          component: policehandling,
+          data: {
+            seller: this.seller
+          }
+        }
+      ]
     }
   },
+
   created() {
+    this._logon()
     this._test()
   },
   methods: {
@@ -77,6 +108,19 @@ export default {
       if (sceneId) params.scene_id = sceneId
       getItemList(params).then(res => {
       })
+    },
+    // 假装获取到了登录信息  cont police 警察  // cont Auxiliary police 辅警
+    _logon() {
+      // const police = "police"
+      // const Auxiliary_police = "Auxiliary_police"
+      // 可手动修改登录权限 _logon
+      const _logon = "police"
+      if (_logon === "police") {
+        return
+      } else if (_logon === "Auxiliary_police") {
+        this.tabs = this.tabs1
+      }
+      console.log(this.tabs, this.tabs1)
     }
   }
 };

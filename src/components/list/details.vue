@@ -1,5 +1,5 @@
 <template>
-  <cube-popup id="list" ref="detailList" class="popup" position="bottom" :mask="false">
+  <cube-popup v-show="isVisible" id="list" ref="detailList" class="popup" position="bottom" :mask="false">
     <div ref="comheight" class="gongdan">
       <div @click="checkheight()">
         <i v-if="false" class="icon-down"></i>
@@ -30,7 +30,7 @@
           </div>
         </li>
       </ul>
-      <div class="management">
+      <div class="management" @click="gopublicProcessing">
         去处置
       </div>
       <!-- <div class="details">
@@ -54,49 +54,60 @@
   </cube-popup>
 </template>
 <script>
+import visibilityMixin from "@/common/mixins/visibility"
+
 export default {
   name: "Details",
-  props: ["detailData"],
+  mixins: [visibilityMixin],
   data() {
     return {
       deetdata: [],
       iconcheck: false,
-      virtualData: [
-        { id: 1, title: "交通执法", content: "江南大道江虹路北汽车刮蹭事故", timing: "2020/03/21 00:00:18", source: "来源：警务系统", color: "ball-red ball" }
-      ]
+      virtualData: []
     }
   },
   watch: {
-    detailData(newData, oldData) {
-      const type = newData.target.De.title
-      this.virtualData[0].title = type;
-      if (type === "指挥调度") {
-        this.virtualData[0].color = "ball-yellow ball"
-      }
-      if (type === "专项整治") {
-        this.virtualData[0].color = "ball-orange ball"
+    deetdata(newData, oldData) {
+      if (newData[0]) {
+        if (newData[0].type === "指挥调度") {
+          newData[0].color = "ball-yellow ball"
+        }
+        if (newData[0].type === "专项整治") {
+          newData[0].color = "ball-orange ball"
+        }
+        if (newData[0].type === "交通执法") {
+          newData[0].color = "ball-red ball"
+        }
       }
     }
   },
   mounted() {
-
   },
   methods: {
     checkheight() {
+      // 获取屏幕的高度 取80%
+      const stillheight = screen.availHeight * (0.8)
       if (this.$refs.comheight.offsetHeight >= 300) {
         this.iconcheck = false
         this.$refs.comheight.style.height = "260px";
       } else {
-        this.$refs.comheight.style.height = "640px";
+        console.log(this.$refs.comheight.style.height, this.$refs.comheight.offsetHeight)
+        this.$refs.comheight.style.height = stillheight + "px";
         this.iconcheck = true
       }
     },
+    gopublicProcessing() {
+      this.$router.replace("/disposestory")
+    },
+    // 返回列表
     goback() {
       const details = this.$parent.$children[1].$children[0];
       const list = this.$parent.$children[0].$children[0];
       details.hide();
       list.show();
       this.deetdata = []
+      this.iconcheck = false
+      this.$refs.comheight.style.height = "260px";
     }
   }
 }
@@ -108,8 +119,6 @@ export default {
   width: 100%;
 }
 .gongdan{
-  // padding-bottom:60px;
-  z-index: 120;
   margin-bottom: -2px;
   height: 260px;
   background-color: #fff;

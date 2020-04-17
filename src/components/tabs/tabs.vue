@@ -2,12 +2,10 @@
   <div class="tab">
     <div class="slide-wrapper">
       <transition name="slide-fade">
-
         <router-view></router-view>
-
       </transition>
     </div>
-    <div class="tabslist">
+    <div v-show="isVisible" ref="tabslist" class="tabslist">
       <cube-tab-bar
         ref="tabBar"
         v-model="selectedLabel"
@@ -25,8 +23,10 @@
 </template>
 
 <script>
+import visibilityMixin from "@/common/mixins/visibility"
 export default {
   name: "Tabs",
+  mixins: [visibilityMixin],
   props: {
     tabs: {
       type: Array,
@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       index: this.initialIndex,
+      isVisible: true,
       slideOptions: {
         listenScroll: true,
         probeType: 3,
@@ -93,7 +94,7 @@ export default {
 .tab {
   overflow: hidden;
   height: 100%;
-  z-index: 50;
+  z-index: 98;
   .slide-wrapper {
     width: 100%;
     height:100%;
@@ -117,6 +118,7 @@ export default {
 }
   }
   .tabslist {
+    transform: 1.5s;
     z-index: 98;
     background-color: #ffffff;
     width: 100%;

@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-/dist
+/mapH5
 
 # local env files
 .env.local

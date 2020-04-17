@@ -2,7 +2,7 @@
   <div class="page">
     <div id="mapContainer"></div>
     <List ref="showList" @fun="findMarker" />
-    <detailList ref="showDetails" :detail-data="detailData" />
+    <detailList ref="showDetails" />
   </div>
 </template>
 
@@ -18,8 +18,7 @@ export default {
   data () {
     return {
       map: null,
-      mapListData: [],
-      detailData: []
+      mapListData: []
     }
   },
   created() {
@@ -56,8 +55,9 @@ export default {
           details.show();
           list.hide();
           that.detailData = data
-          that.$children[1].deetdata
-          console.log(that, data, that.$children[1].deetdata)
+          if (!that.$children[1].deetdata[0]) {
+            that.$children[1].deetdata.push(d)
+          }
         })
       })
     },

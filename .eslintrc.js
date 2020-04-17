@@ -14,7 +14,7 @@ module.exports = {
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
   rules: {
-    eqeqeq: ["off"],
+    eqeqeq: 0,
     "vue/max-attributes-per-line": [
       2,
       {
@@ -65,7 +65,6 @@ module.exports = {
     curly: [2, "multi-line"],
     "dot-location": [2, "property"],
     "eol-last": 2,
-    eqeqeq: ["error", "always", { null: "ignore" }],
     "generator-star-spacing": [
       2,
       {

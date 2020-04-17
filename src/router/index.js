@@ -6,10 +6,9 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "policehandling",
-    // 警情处理
-    component: () =>
-      import("../components/policehandling/policehandling.vue")
+    name: "home",
+    // 首页
+    redirect: "/policehandling"
   },
   {
     path: "/about",
@@ -54,8 +53,21 @@ const routes = [
     // 基层基础
     component: () =>
       import("../components/basicmatters/basicmatters.vue")
+  },
+  {
+    path: "/disposestory",
+    name: "disposestory",
+    // 工单处理
+    component: () =>
+      import("../components/disposestory/disposestory.vue")
+  },
+  {
+    path: "/PublicProcessing",
+    name: "PublicProcessing",
+    // 公共处理弹出层
+    component: () =>
+      import("../components/PublicProcessing/PublicProcessing.vue")
   }
-
 ];
 
 const router = new VueRouter({
